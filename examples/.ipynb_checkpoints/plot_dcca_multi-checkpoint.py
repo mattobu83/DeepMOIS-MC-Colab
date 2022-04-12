@@ -10,11 +10,11 @@ This example demonstrates how to easily train Deep CCA models and variants
 
 import numpy as np
 import pandas as pd
-import pytorch_lightning as pl
 import cca_zoo.packages.pytorch_lightning.pytorch_lightning as pl
-#from torch.utils.data import Subset
-#from torch import optim
+from torch.utils.data import Subset
+from torch import optim
 
+# %%
 from cca_zoo import data
 from cca_zoo.deepmodels import (
     DCCA,
@@ -26,14 +26,12 @@ from cca_zoo.deepmodels import (
     DTCCA,
 )
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input', default=None, required=True, help='tab-separated view data')
 
-    df = pd.read_csv("/home/pdutta/DGCCA/data/TCGA_BRCA/methyl_rnaseq_mirna_minmax.tsv", sep = "\t", header =None)
 
-    print (df.shape)
-    print (df.iloc[1,0:10])
+df = pd.read_csv("/home/pdutta/DGCCA/data/TCGA_BRCA/methyl_rnaseq_mirna_minmax.tsv", sep = "\t", header =None)
+
+print (df.shape)
+print (df.iloc[1,0:10])
 
 
 
@@ -110,8 +108,9 @@ print ("CCALightning dcca", dcca)
         
 
 trainer = pl.Trainer(max_epochs=epochs, enable_checkpointing=False)
+print ("Check")
 trainer.fit(dcca, train_loader, val_loader)
-
+print ("ded")
 
 
  
