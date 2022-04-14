@@ -9,5 +9,6 @@ Note that we didn't start everything from scratch but modified the source code f
 
 ## Usage
 * `cd examples/scripts`
-* `./dgcca_embedding.sh` 
+* Then run the following bash script
+`./dgcca_embedding.sh` 
 * 
