@@ -1,1 +1,0 @@
-from .vcca import VariationalCCA
