@@ -13,8 +13,8 @@ import pandas as pd
 import pytorch_lightning as pl
 from torch import optim
 
-from cca_zoo import data
-from cca_zoo.deepmodels import (
+from cca import data
+from cca.deepmodels import (
     DCCA,
     CCALightning,
     get_dataloaders,
@@ -37,8 +37,6 @@ if __name__ == '__main__':
     parser.add_argument('--num_workers', default=8, type=int, required=True, help='number of process for dataloading')
     parser.add_argument('--train_batch_size', default=16, type=int, required=True, help='training batch size')
     parser.add_argument('--val_batch_size', default=16, type=int, required=True, help='validation batch size')
-
-    
     args = parser.parse_args()
 
     df = pd.read_csv(args.input, sep = "\t", header =None)

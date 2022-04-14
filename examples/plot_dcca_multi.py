@@ -13,8 +13,8 @@ import pandas as pd
 import pytorch_lightning as pl
 from torch import optim
 
-from cca_zoo import data
-from cca_zoo.deepmodels import (
+from cca import data
+from cca.deepmodels import (
     DCCA,
     CCALightning,
     get_dataloaders,
