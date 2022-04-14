@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(1,'/home/pdutta/DGCCA/cca_zoo')
+sys.path.insert(1,'/home/pdutta/DGCCA/cca')
 
 from typing import Iterable, Union
 

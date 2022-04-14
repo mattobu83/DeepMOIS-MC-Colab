@@ -4,8 +4,8 @@ import numpy as np
 from scipy.linalg import block_diag
 from sklearn.utils.validation import check_is_fitted
 
-from cca.models import MCCA
-from cca.utils import _check_views
+from cca_zoo.models import MCCA
+from cca_zoo.utils import _check_views
 
 
 class PartialCCA(MCCA):
@@ -18,7 +18,7 @@ class PartialCCA(MCCA):
     Rao, B. Raja. "Partial canonical correlations." Trabajos de estadistica y de investigación operativa 20.2-3 (1969): 211-219.
 
     :Example:
-    >>> from cca.models import PartialCCA
+    >>> from cca_zoo.models import PartialCCA
     >>> X1 = np.random.rand(10,5)
     >>> X2 = np.random.rand(10,5)
     >>> partials = np.random.rand(10,3)

@@ -4,7 +4,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from cca_zoo.data.utils import CCA_Dataset
+from cca.data.utils import CCA_Dataset
 
 
 def process_data(

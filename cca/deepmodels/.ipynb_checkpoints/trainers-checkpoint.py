@@ -6,7 +6,7 @@ import torch
 from pytorch_lightning import LightningModule
 from torch.utils.data import DataLoader
 
-from cca_zoo.deepmodels import _DCCA_base
+from cca.deepmodels import _DCCA_base
 
 
 class CCALightning(LightningModule):

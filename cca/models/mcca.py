@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(1,'/home/pdutta/DGCCA/cca_zoo')
+sys.path.insert(1,'/home/pdutta/DGCCA/cca')
 
 from typing import Iterable, Union
 
@@ -8,8 +8,8 @@ from scipy.linalg import block_diag, eigh
 from sklearn.metrics.pairwise import pairwise_kernels
 from sklearn.utils.validation import check_is_fitted
 
-from cca_zoo.models import rCCA
-from cca_zoo.utils.check_values import _process_parameter, _check_views
+from cca.models import rCCA
+from cca.utils.check_values import _process_parameter, _check_views
 
 
 class MCCA(rCCA):
@@ -31,7 +31,7 @@ class MCCA(rCCA):
     Kettenring, Jon R. "Canonical analysis of several sets of variables." Biometrika 58.3 (1971): 433-451.
 
     :Example:
-    >>> from cca_zoo.models import MCCA
+    >>> from cca.models import MCCA
     >>> import numpy as np
     >>> rng=np.random.RandomState(0)
     >>> X1 = rng.random((10,5))
@@ -119,7 +119,7 @@ class KCCA(MCCA):
 
     :Example:
 
-    >>> from cca_zoo.models import KCCA
+    >>> from cca.models import KCCA
     >>> import numpy as np
     >>> rng=np.random.RandomState(0)
     >>> X1 = rng.random((10,5))

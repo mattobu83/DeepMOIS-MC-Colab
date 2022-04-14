@@ -4,8 +4,8 @@ from typing import Iterable, Union
 import numpy as np
 from scipy.linalg import block_diag, eigh
 
-from cca.models._cca_base import _CCA_Base
-from cca.utils.check_values import _process_parameter, _check_views
+from cca_zoo.models._cca_base import _CCA_Base
+from cca_zoo.utils.check_values import _process_parameter, _check_views
 
 
 # from hyperopt import fmin, tpe, Trials
@@ -34,7 +34,7 @@ class rCCA(_CCA_Base):
 
     :Example:
 
-    >>> from cca.models import rCCA
+    >>> from cca_zoo.models import rCCA
     >>> import numpy as np
     >>> rng=np.random.RandomState(0)
     >>> X1 = rng.random((10,5))
@@ -196,7 +196,7 @@ class CCA(rCCA):
 
     :Example:
 
-    >>> from cca.models import CCA
+    >>> from cca_zoo.models import CCA
     >>> import numpy as np
     >>> rng=np.random.RandomState(0)
     >>> X1 = rng.random((10,5))
@@ -253,7 +253,7 @@ class PLS(rCCA):
 
     :Example:
 
-    >>> from cca.models import PLS
+    >>> from cca_zoo.models import PLS
     >>> import numpy as np
     >>> rng=np.random.RandomState(0)
     >>> X1 = rng.random((10,5))

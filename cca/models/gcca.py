@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(1,'/home/pdutta/DGCCA/cca_zoo')
+sys.path.insert(1,'/home/pdutta/DGCCA/cca')
 
 from typing import Iterable, Union
 
@@ -8,8 +8,8 @@ from scipy.linalg import eigh
 from sklearn.metrics import pairwise_kernels
 from sklearn.utils.validation import check_is_fitted
 
-from cca_zoo.models import rCCA
-from cca_zoo.utils.check_values import _process_parameter, _check_views
+from cca.models import rCCA
+from cca.utils.check_values import _process_parameter, _check_views
 
 
 class GCCA(rCCA):
@@ -32,7 +32,7 @@ class GCCA(rCCA):
 
     :Example:
 
-    >>> from cca_zoo.models import GCCA
+    >>> from cca.models import GCCA
     >>> import numpy as np
     >>> rng=np.random.RandomState(0)
     >>> X1 = rng.random((10,5))
@@ -132,7 +132,7 @@ class KGCCA(GCCA):
 
     :Example:
 
-    >>> from cca_zoo.models import KGCCA
+    >>> from cca.models import KGCCA
     >>> import numpy as np
     >>> rng=np.random.RandomState(0)
     >>> X1 = rng.random((10,5))

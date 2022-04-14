@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(1,'/home/pdutta/Github/Multiview_clustering_DGCCCA')
+sys.path.insert(1,'/home/pdutta/Github/Multiview_clustering_DGCCA')
 
 """
 Deep CCA for more than 2 views
@@ -21,7 +21,6 @@ from cca.deepmodels import (
     process_data,
     architectures,
     objectives,
-    DTCCA,
 )
 
 if __name__ == '__main__':
@@ -63,7 +62,8 @@ if __name__ == '__main__':
     dataset = data.CCA_Dataset([view_0_features, view_1_features, view_2_features])
     train_dataset, val_dataset = process_data(dataset, val_split=0.2)
     loader = get_dataloaders(dataset)
-    train_loader, val_loader = get_dataloaders(train_dataset, val_dataset, batch_size=args.train_batch_size, val_batch_size=args.val_batch_size, num_workers= (args.num_workers-10))
+    # batch_size=args.train_batch_size, val_batch_size=args.val_batch_size,
+    train_loader, val_loader = get_dataloaders(train_dataset, val_dataset, num_workers= (args.num_workers-10))
 
 
     # Developing the architecture
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     optimizer = optim.Adam(dcca.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, 1)
     dcca = CCALightning(dcca, optimizer=optimizer, lr_scheduler=scheduler)
-    trainer = pl.Trainer(default_root_dir=args.log_path, max_epochs=num_of_epochs, enable_checkpointing=False, accelerator="gpu", devices=4, strategy="ddp")
+    trainer = pl.Trainer(default_root_dir=args.log_path, max_epochs=num_of_epochs, enable_checkpointing=False, gpus=1)
     #, accelerator="gpu", devices=4, strategy="ddp"#### gpus=2
     trainer.fit(dcca, train_loader, val_loader)
 

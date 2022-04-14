@@ -1,8 +1,8 @@
 import torch
 
-from cca_zoo.deepmodels import objectives
-from cca_zoo.deepmodels.architectures import Encoder
-from cca_zoo.models import MCCA
+from cca.deepmodels import objectives
+from cca.deepmodels.architectures import Encoder
+from cca.models import MCCA
 from ._dcca_base import _DCCA_base
 
 
