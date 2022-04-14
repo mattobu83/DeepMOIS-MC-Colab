@@ -45,7 +45,7 @@ class Encoder(BaseEncoder):
         if layer_sizes is None:
             layer_sizes = [128]
         layers = []
-        print(feature_size, layer_sizes[0])
+        #print(feature_size, layer_sizes[0])
 
         # first layer
         layers.append(

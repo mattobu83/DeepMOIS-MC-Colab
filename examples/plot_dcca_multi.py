@@ -83,5 +83,6 @@ if __name__ == '__main__':
     #, accelerator="gpu", devices=4, strategy="ddp"#### gpus=2
     trainer.fit(dcca, train_loader, val_loader)
 
+    
 
 

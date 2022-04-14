@@ -51,8 +51,9 @@ class CCALightning(LightningModule):
         data, label = batch
         loss = self.model.loss(*data)
         self.log("train loss", loss)
+        print("train")
         return loss
-
+    
     def validation_step(self, batch, batch_idx):
         print ("Batch", batch)
         data, label = batch

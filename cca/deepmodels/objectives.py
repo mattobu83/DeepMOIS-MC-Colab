@@ -178,7 +178,7 @@ class GCCA:
         else:
             file = '/home/pdutta/DGCCA/results/embeddings/embedding_view_0.npy'
         f = open(file, 'wb')
-        np.save(f, eigvals.T.detach().numpy())
+        np.save(f, eigvals.T.detach().cpu().numpy())
               
                
 
