@@ -13,11 +13,11 @@ class CCALightning(LightningModule):
     def __init__(
         self,
         model: _DCCA_base,
+        embedding_path: str,
         optimizer: torch.optim.Optimizer = None,
-        lr_scheduler: torch.optim.lr_scheduler = None,
+        lr_scheduler: torch.optim.lr_scheduler = None
     ):
         """
-
         :param model: a model instance from deepmodels
         :param optimizer: a pytorch optimizer with parameters from model
         :param lr_scheduler: a pytorch scheduler
@@ -25,6 +25,7 @@ class CCALightning(LightningModule):
         super().__init__()
         self.save_hyperparameters()
         self.model = model
+        self.embedding_path = embedding_path
         self.sanity_check = True
 
 
@@ -49,7 +50,7 @@ class CCALightning(LightningModule):
 
     def training_step(self, batch, batch_idx):
         data, label = batch
-        loss = self.model.loss(*data)
+        loss = self.model.loss(*data, self.embedding_path)
         self.log("train loss", loss)
         print("train")
         return loss
@@ -57,13 +58,13 @@ class CCALightning(LightningModule):
     def validation_step(self, batch, batch_idx):
         print ("Batch", batch)
         data, label = batch
-        loss = self.model.loss(*data)
+        loss = self.model.loss(*data, self.embedding_path)
         self.log("val loss", loss)
         return loss
 
     def test_step(self, batch, batch_idx):
         data, label = batch
-        loss = self.model.loss(*data)
+        loss = self.model.loss(*data, self.embedding_path)
         self.log("test loss", loss)
         return loss
 

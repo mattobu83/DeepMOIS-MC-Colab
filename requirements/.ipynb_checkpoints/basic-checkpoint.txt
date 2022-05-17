@@ -1,0 +1,9 @@
+numpy
+scikit-learn>=1.0
+mvlearn
+scipy>=1.7
+matplotlib
+seaborn
+pandas
+tensorly
+joblib

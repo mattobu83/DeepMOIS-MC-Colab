@@ -15,4 +15,4 @@ from .iterative import (
 )
 from .ncca import NCCA
 from .partialcca import PartialCCA
-from .tcca import TCCA, KTCCA
+

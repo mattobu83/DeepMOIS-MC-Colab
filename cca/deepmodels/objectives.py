@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import scipy.linalg
 import tensorly as tl
@@ -106,7 +107,7 @@ class GCCA:
 
     """
 
-    def __init__(self, latent_dims: int, r: float = 0, eps: float = 1e-3):
+    def __init__(self, embedding_path: str, latent_dims: int, num_of_epochs: int, r: float = 0, eps: float = 1e-3):
         """
 
         :param latent_dims: the number of latent dimensions
@@ -117,27 +118,15 @@ class GCCA:
         self.latent_dims = latent_dims
         self.r = r
         self.eps = eps
+        self.embedding_path = embedding_path
+        self.max_of_epochs = num_of_epochs 
+        
 
     def loss(self, *views):
         # https: // www.uta.edu / math / _docs / preprint / 2014 / rep2014_04.pdf
         # H is n_views * n_samples * k
         views = _demean(*views)
-        print ("views", len(views), len(views[0]), len(views[0][1]))
-        # for i in range(len(views)):
-        #     my_file = Path("embeddings/embedding_view_0.npy")
-        #     if my_file.is_file():
-        #         all_filenames = [f for f in listdir("embeddings") if isfile(join("embeddings", f))]
-        #         print (all_filenames)
-        #         all_filenames= sorted_alphanumeric(all_filenames)
-        #         print (all_filenames)
-        #         latest_file = all_filenames[-1]
-        #         file = "embeddings/embedding_view_"+ str(int(latest_file.split(".")[0].split("_")[2])+1)+".npy"
-        #     else:
-        #         file = 'embeddings/embedding_view_0.npy'
-        #     f = open(file, 'wb')
-        #     np.save(f, views[i].detach().numpy())
-
-
+        #print ("views", len(views), len(views[0]), len(views[0][1]))
         eigen_views = [
             view
             @ mat_pow(view.T @ view, -1, self.eps)
@@ -155,6 +144,7 @@ class GCCA:
         L, G = torch.linalg.eigh(Q)
         #print(G)
         print(G.shape)
+        print("#########################",self.max_of_epochs)
         
         
 
@@ -162,22 +152,29 @@ class GCCA:
 
         eigvals = G[idx[: self.latent_dims]]
         #print(eigvals)
-        print(len(eigvals))
-        print(eigvals.T.shape)
-        print(len(eigvals[0]))
+        # print(len(eigvals))
+        # print(eigvals.T.shape)
+        # print(len(eigvals[0]))
         #input()
         #input()
-        my_file = Path("/home/pdutta/DGCCA/results/embeddings/embedding_view_0.npy")
-        if my_file.is_file():
-            all_filenames = [f for f in listdir("/home/pdutta/DGCCA/results/embeddings") if isfile(join("/home/pdutta/DGCCA/results/embeddings", f))]
-            print (all_filenames)
-            all_filenames= sorted_alphanumeric(all_filenames)
-            print (all_filenames)
-            latest_file = all_filenames[-1]
-            file = "/home/pdutta/DGCCA/results/embeddings/embedding_view_"+ str(int(latest_file.split(".")[0].split("_")[2])+1)+".npy"
-        else:
-            file = '/home/pdutta/DGCCA/results/embeddings/embedding_view_0.npy'
-        f = open(file, 'wb')
+        my_file = os.path.join(self.embedding_path, "embedding_view.npy")
+        #my_file = Path("/home/pdutta/DGCCA/results/embeddings/embedding_view_0.npy")
+        
+        ####################
+        # if Path(my_file).is_file():
+        #     all_filenames = [f for f in listdir(self.embedding_path) if isfile(join(self.embedding_path, f))]
+        #     all_filenames= sorted_alphanumeric(all_filenames)
+        #     latest_file = all_filenames[-1]
+        #     file_name = "embedding_view_"+ str(int(latest_file.split(".")[0].split("_")[2])+1)+ ".npy"
+        #     #file = "/home/pdutta/DGCCA/results/embeddings/embedding_view_"+ str(int(latest_file.split(".")[0].split("_")[2])+1)+".npy"
+        #     file = os.path.join(self.embedding_path, file_name)
+        # else:
+        #     #file = '/home/pdutta/DGCCA/results/embeddings/embedding_view_0.npy'
+        #     file = my_file
+        #########################
+        
+        
+        f = open(my_file, 'wb')
         np.save(f, eigvals.T.detach().cpu().numpy())
               
                

@@ -23,6 +23,11 @@ def process_data(
             int(len(dataset) * val_split),
         ]
         dataset, val_dataset = torch.utils.data.random_split(dataset, lengths)
+        print (dataset, val_dataset)
+        for i in iter(dataset):
+            print(i)
+            input()
+        input()
     elif isinstance(val_dataset, tuple):
         val_dataset = CCA_Dataset(val_dataset, labels=val_labels)
     return dataset, val_dataset

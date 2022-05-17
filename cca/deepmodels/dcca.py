@@ -19,10 +19,12 @@ class DCCA(_DCCA_base):
     def __init__(
         self,
         latent_dims: int,
+        epochs: int,
         objective=objectives.GCCA,
+        embedding_path=None,
         encoders=None,
         r: float = 0,
-        eps: float = 1e-5,
+        eps: float = 1e-3
     ):
         """
         Constructor class for DCCA
@@ -37,13 +39,13 @@ class DCCA(_DCCA_base):
         if encoders is None:
             encoders = [Encoder, Encoder]
         self.encoders = torch.nn.ModuleList(encoders)
-        self.objective = objective(latent_dims, r=r, eps=eps)
+        self.objective = objective(embedding_path=embedding_path,latent_dims= latent_dims, num_of_epochs = epochs, r=r, eps=eps)
 
     def forward(self, *args):
         z = []
-        print (args)
+        #print (args)
         for i, encoder in enumerate(self.encoders):
-            print ("i", i, args[i])
+            #print ("i", i, args[i])
             z.append(encoder(args[i]))
         #print("Z@@",z)
         return z
@@ -56,6 +58,7 @@ class DCCA(_DCCA_base):
         :return:
         """
         z = self(*args)
+        #print("RTTTT", self.trainer.current_epoch)
         return self.objective.loss(*z)
 
     def post_transform(self, z_list, train=False):
