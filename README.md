@@ -1,4 +1,4 @@
-#DeepMOIS_MC
+# DeepMOIS-MC (Deep Multi-Omics Integrative Subtyping by Maximizing Correlation)
 
 In this GitHub repository, we have impemented  [DGCCA (Deep Generalized CCA)](https://www.aclweb.org/anthology/W19-4301.pdf) for generating shared representation of multiple views. The code is written in a way so that it will works for any number of views with passing diffrent arguments.  
 
