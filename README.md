@@ -9,4 +9,5 @@ Note that we didn't start everything from scratch but modified the source code f
 * `cd examples/scripts`
 * Then run the following bash script
 `./dgcca_embedding.sh` 
-* 
+  - This will generate the shared representation. 
+* In the `postprocessing` folder run `UniCoxPh_clustering_KMplot_all_views.ipynb` for generating the clustering results and also generate KM Plot for survival prediction.  
