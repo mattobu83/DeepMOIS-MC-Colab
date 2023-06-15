@@ -5,7 +5,7 @@
 **Paper Name:-** [Deep Multi-Omics Integration by Learning Correlation-Maximizing Representation Identifies Prognostically Stratified Cancer Subtypes]()
 * **Authors:** Yanrong Ji<sup>1</sup>, Pratik Dutta<sup>2</sup>, and Ramana Davuluri<sup>2</sup>
 * **Affiliation:** <sup>1</sup>1Driskill Graduate Program in Life Sciences, Northwestern University, Chicago, IL, <sup>2</sup>2Department of Biomedical Informatics, Stony Brook Cancer Center, Stony Brook Medicine, Stony Brook University, Stony Brook, NY 11794,
-* **Accepted(2nd June, 2023):** [IEEE/ACM Transactions on Computational Biology and Bioinformatics](https://www.computer.org/csdl/journal/tb)
+* **Accepted(2nd June, 2023):** [Bioinformatics Advances| Oxford Academic](https://academic.oup.com/bioinformaticsadvances)
 * **Corresponding Author:** [Ramana V. Davuluri](https://bmi.stonybrookmedicine.edu/people/ramana_davuluri) (Ramana.Davuluri@stonybrookmedicine.edu ) 
 
 
