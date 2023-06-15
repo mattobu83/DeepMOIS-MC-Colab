@@ -17,6 +17,9 @@ Note that we didn't start everything from scratch but modified the source code f
 We developed a novel outcome-guided molecular subgrouping framework, called DeepMOIS-MC (Deep Multi-Omics Integrative Subtyping by Maximizing Correlation), for integrative learning from multi-omics data by maximizing correlation between all input -omics views. DeepMOIS-MC consists of two parts: clustering and classification. In the clustering part, the preprocessed high-dimensional multi-omics views are input into two-layer fully connected neural networks. The outputs of individual networks are subjected to Generalized Canonical Correlation Analysis loss to learn the shared representation. Next, the learned representation is filtered by a regression model to select features that are related to a covariate clinical variable, for example, a survival/outcome. The filtered features are used for clustering to determine the optimal cluster assignments. In the classification stage, the original feature matrix of one of the -omics view is scaled and discretized based on equal frequency binning, and then subjected to feature selection using RandomForest. Using these selected features, classification models (for example, XGBoost model) are built to predict the molecular subgroups that were identified at clustering stage. We applied DeepMOIS-MC on lung and liver cancers, using TCGA datasets. In compar-
 ative analysis, we found that DeepMOIS-MC outperformed traditional approaches in patient stratification. Finally, we validated the robustness and generalizability of the classification models on independent datasets. We anticipate that the DeepMOIS-MC can be adopted to many multi-omics integrative analyses tasks.
 
+![flowchart](https://github.com/duttaprat/DeepMOIS-MC/assets/29531232/ce056a30-fca1-4c3b-aeff-5c97ea261af8)
+
+
 
 ## Usage
 * `cd examples/scripts`
