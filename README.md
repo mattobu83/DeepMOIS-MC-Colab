@@ -19,6 +19,7 @@ ative analysis, we found that DeepMOIS-MC outperformed traditional approaches in
 
 ![flowchart](https://github.com/duttaprat/DeepMOIS-MC/assets/29531232/ce056a30-fca1-4c3b-aeff-5c97ea261af8)
 
+## Environmental Setup
 
 
 ## Usage
