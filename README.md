@@ -11,7 +11,7 @@
 Note that we didn't start everything from scratch but modified the source code from [jameschapman19/cca_zoo](https://github.com/jameschapman19/cca_zoo). We are very thankful to James Chapman and Hao-Ting Wang - authors of this original version. 
 
 
-**We have modified the codebase for generating the shared representation of the multi-omics data. In this work, we have used three omics views, e.g. Methylation, RNASeq and miRNA. But the code is written in a way so that it will works for any number of views with passing diffrent arguments.**  
+**NOTE**: We have modified the codebase for generating the shared representation of the multi-omics data. In this work, we have used three omics views, e.g. Methylation, RNASeq and miRNA. But the code is written in a way so that it will works for any number of views with passing diffrent arguments.  
 
 ## Abstract
 In this GitHub repository, we have impemented  [DGCCA (Deep Generalized CCA)](https://www.aclweb.org/anthology/W19-4301.pdf) for generating shared representation of multiple views. 
