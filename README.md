@@ -1,6 +1,5 @@
 # DeepMOIS-MC (Deep Multi-Omics Integrative Subtyping by Maximizing Correlation)
 
-## This is the readme file that contains the guidelines and information about the compilation the code of the following paper
 
 **Paper Name:-** [Deep Multi-Omics Integration by Learning Correlation-Maximizing Representation Identifies Prognostically Stratified Cancer Subtypes]()
 * **Authors:** Yanrong Ji<sup>1</sup>, Pratik Dutta<sup>2</sup>, and Ramana Davuluri<sup>2</sup>
