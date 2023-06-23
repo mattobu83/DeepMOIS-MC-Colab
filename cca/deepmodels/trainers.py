@@ -74,11 +74,11 @@ class CCALightning(LightningModule):
 
     def on_validation_epoch_end(self, unused: Optional = None) -> None:
         try:
-            score = self.score(self.trainer.val_dataloaders[0]).sum()
+            score = self.score(self.trainer.val_dataloaders).sum()
             self.log("val corr", score)
         except:
             # Should only be during sanity check
-            score = self.score(self.trainer.val_dataloaders[0], train=True).sum()
+            score = self.score(self.trainer.val_dataloaders, train=True).sum()
             self.log("val corr", score)
 
     def correlations(
