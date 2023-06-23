@@ -26,7 +26,7 @@ from sklearn.model_selection import check_cv
 from sklearn.model_selection._search import (
     BaseSearchCV as SKBaseSearchCV,
     ParameterGrid,
-    _check_param_grid,
+#    _check_param_grid,
 )
 from sklearn.model_selection._validation import _fit_and_score, _insert_error_scores
 from sklearn.pipeline import Pipeline
@@ -34,6 +34,25 @@ from sklearn.utils import indexable
 from sklearn.utils.fixes import delayed
 from sklearn.utils.validation import _check_fit_params, check_random_state
 
+def _check_param_grid(param_grid):
+    if hasattr(param_grid, 'items'):
+        param_grid = [param_grid]
+
+    for p in param_grid:
+        for name, v in p.items():
+            if isinstance(v, np.ndarray) and v.ndim > 1:
+                raise ValueError("Parameter array should be one-dimensional.")
+
+            if (isinstance(v, str) or
+                    not isinstance(v, (np.ndarray, Sequence))):
+                raise ValueError("Parameter grid for parameter ({0}) needs to"
+                                 " be a list or numpy array, but got ({1})."
+                                 " Single values need to be wrapped in a list"
+                                 " with one element.".format(name, type(v)))
+
+            if len(v) == 0:
+                raise ValueError("Parameter values for parameter ({0}) need "
+                                 "to be a non-empty sequence.".format(name))
 
 def param2grid(params):
     """
