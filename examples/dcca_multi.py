@@ -1,7 +1,7 @@
 import sys, json, re, os, itertools
 from os import listdir
 from os.path import isfile
-sys.path.insert(1,'/home/pdutta/Github/Multiview_clustering_DGCCA')
+sys.path.insert(1,'/content/DeepMOIS-MC/')
 
 """
 Deep CCA for more than 2 views
@@ -144,9 +144,9 @@ if __name__ == '__main__':
                 val_batch_size = len(dataset)
             else:
                 val_batch_size = args.val_batch_size
-            train_loader = DataLoader(dataset, sampler=train_sampler, num_workers= int((args.num_workers-10)/3), batch_size = train_batch_size)
-            val_loader = DataLoader(dataset, sampler=val_sampler, num_workers= int((args.num_workers-10)/3), batch_size = val_batch_size)
-            embed_loader = DataLoader(dataset, sampler=embed_sampler, num_workers= int((args.num_workers-10)/3), batch_size = dataset_size)
+            train_loader = DataLoader(dataset, sampler=train_sampler, num_workers= int((args.num_workers)), batch_size = train_batch_size)
+            val_loader = DataLoader(dataset, sampler=val_sampler, num_workers= int((args.num_workers)), batch_size = val_batch_size)
+            embed_loader = DataLoader(dataset, sampler=embed_sampler, num_workers= int((args.num_workers)), batch_size = dataset_size)
             #BatchSampler(SequentialSampler(range(10)), batch_size=3, drop_last=False)
 
 
@@ -165,7 +165,7 @@ if __name__ == '__main__':
             scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, 1)
             dcca = CCALightning(dcca, optimizer=optimizer, lr_scheduler=scheduler, embedding_path = embed_path)
             trainer = pl.Trainer(default_root_dir=log_path, max_epochs=num_of_epochs, enable_checkpointing=True, 
-                                 accelerator="gpu", devices=1, replace_sampler_ddp=False, profiler="simple", 
+                                 accelerator="gpu", devices=1, profiler="simple", 
                                  callbacks= [ModelCheckpoint(monitor='val loss', mode='min', dirpath=model_path, 
                                                              filename='{epoch}-{step}-{val loss:.2f}')])
             #, accelerator="gpu", devices=4, strategy="ddp"#### gpus=2
