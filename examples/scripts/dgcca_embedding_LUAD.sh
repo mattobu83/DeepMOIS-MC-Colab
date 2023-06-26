@@ -11,7 +11,7 @@ NO_OF_VIEWS=3
 
 ## Training parameters
 architecture="[[1000,500],[900,400],[200,150]]" # Set architecture of each view
-numEpochs=50
+numEpochs=5
 latent_dims=100
 lr=0.0000001
 train_batch_size=32
