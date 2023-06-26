@@ -2,6 +2,7 @@ start_epoch=1
 end_epoch=5
 for ((epoch=$start_epoch; epoch<=$end_epoch; epoch++))
 do
+  echo "Running Python script for epoch $epoch"
   CANCER_TYPE="LUAD"
   ##Directory Path
   IN_DIR="./TCGA_${CANCER_TYPE}"
