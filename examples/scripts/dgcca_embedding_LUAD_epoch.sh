@@ -1,4 +1,6 @@
-for i in 1 2 3 4 5
+start_epoch=1
+end_epoch=5
+for ((epoch=$start_epoch; epoch<=$end_epoch; epoch++))
 do
   CANCER_TYPE="LUAD"
   ##Directory Path
@@ -13,7 +15,7 @@ do
   
   ## Training parameters
   architecture="[[1000,500],[900,400],[200,150]]" # Set architecture of each view
-  numEpochs= $i
+  numEpochs= $epoch
   latent_dims=100
   lr=0.0000001
   train_batch_size=32
