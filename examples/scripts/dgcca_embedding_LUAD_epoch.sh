@@ -5,7 +5,7 @@ do
   echo "Running Python script for epoch $epoch"
   CANCER_TYPE="LUAD"
   ##Directory Path
-  IN_DIR="./TCGA_${CANCER_TYPE}"
+  IN_DIR="/content/drive/MyDrive/TCGA_LUAD_DGCCA"
   OUT_DIR="./results/${CANCER_TYPE}"
   
   
