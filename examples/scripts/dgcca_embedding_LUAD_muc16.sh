@@ -5,7 +5,7 @@ OUT_DIR="./results/${CANCER_TYPE}"
 
 
 ## Raw data
-IN_PATH="${IN_DIR}/methyl_rnaseq_mirna_minmax_kras.tsv"
+IN_PATH="${IN_DIR}/methyl_rnaseq_mirna_minmax_MUC16.tsv"
 NO_OF_VIEWS=3
 
 
