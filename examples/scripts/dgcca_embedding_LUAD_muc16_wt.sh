@@ -10,7 +10,7 @@ do
   
   
   ## Raw data
-  IN_PATH="${IN_DIR}/methyl_rnaseq_mirna_minmax_muc16_WT.tsv"
+  IN_PATH="${IN_DIR}/methyl_rnaseq_mirna_minmax_muc16_wt.tsv"
   NO_OF_VIEWS=3
   
   
