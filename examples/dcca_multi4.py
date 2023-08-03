@@ -116,67 +116,70 @@ if __name__ == '__main__':
     
     for L in range(2, len(views)+1):
         print(L)
-        view_list = list(itertools.combinations(views, L))
-        view_names_list = list(itertools.combinations(view_names, L))
-        encoders_list = list(itertools.combinations(encoders, L))
-        for i , j, z in zip(view_list, view_names_list, encoders_list):
-            view_name = '_'.join(j)
-            print (view_name)
-            dataset = data.CCA_Dataset(i)
-            dataset_size = len(dataset)
-            
-            
-            ## Creating training and validation dataset
-            indices = list(range(dataset_size))
-            split = int(np.floor(0.9 * dataset_size))
-            np.random.seed(0)
-            np.random.shuffle(indices)
-            train_indices, val_indices = indices[:split], indices[split:]
-            shuffled_indices = train_indices + val_indices
-            train_sampler = SubsetRandomSampler(train_indices)
-            val_sampler = SubsetRandomSampler(val_indices)
-            embed_sampler = SequentialSampler(list(range(dataset_size)))
-            if (args.train_batch_size == None):
-                train_batch_size = len(dataset)
-            else:
-                train_batch_size = args.train_batch_size
-            if (args.val_batch_size == None):
-                val_batch_size = len(dataset)
-            else:
-                val_batch_size = args.val_batch_size
-            train_loader = DataLoader(dataset, sampler=train_sampler, num_workers= int((args.num_workers)), batch_size = train_batch_size)
-            val_loader = DataLoader(dataset, sampler=val_sampler, num_workers= int((args.num_workers)), batch_size = val_batch_size)
-            embed_loader = DataLoader(dataset, sampler=embed_sampler, num_workers= int((args.num_workers)), batch_size = dataset_size)
-            #BatchSampler(SequentialSampler(range(10)), batch_size=3, drop_last=False)
-
-
-
-            # Deep Generalized Canonical Correlation Analysis
-            embed_path = os.path.join(args.embedPath , view_name)
-            model_path = os.path.join(args.model_path, view_name)
-            log_path = os.path.join(args.log_path, view_name)
-            final_embd_csv_path = os.path.join(args.final_embed_path, view_name)
-            paths = [embed_path, model_path, log_path, final_embd_csv_path]
-            for path in paths:
-                if not os.path.exists(path):
-                    os.makedirs(path)
-            dcca = DCCA(embedding_path= embed_path, latent_dims=latent_dims, encoders=list(z), objective=objectives.GCCA, epochs= num_of_epochs)
-            optimizer = optim.Adam(dcca.parameters(), lr=lr)
-            scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, 1)
-            dcca = CCALightning(dcca, optimizer=optimizer, lr_scheduler=scheduler, embedding_path = embed_path)
-            trainer = pl.Trainer(default_root_dir=log_path, max_epochs=num_of_epochs, enable_checkpointing=True, 
-                                 accelerator="gpu", devices=1, profiler="simple", 
-                                 callbacks= [ModelCheckpoint(monitor='val loss', mode='min', dirpath=model_path, 
-                                                             filename='{epoch}-{step}-{val loss:.2f}')])
-            #, accelerator="gpu", devices=4, strategy="ddp"#### gpus=2
-            trainer.fit(dcca, train_loader, val_loader)
-            trainer.validate(dataloaders=embed_loader, ckpt_path='best')
-            embeding_csv = pd.DataFrame(np.load(os.path.join(embed_path,'embedding_view.npy')))
-            embeding_csv = embeding_csv.rename(columns={k:'DGCCA_'+str(k+1) for k in embeding_csv.columns})
-            embeding_csv.to_csv(os.path.join(final_embd_csv_path, "final_embedding.csv"), index=False)
-            #dict_parameters['csv_path']=os.path.join(final_embd_csv_path, "final_embedding.csv")
-            np.save(os.path.join(final_embd_csv_path, 'parameters_details.npy'), dict_parameters)
-            #save_embedding(args.embedPath, args.base_name, args.final_embed_path, shuffled_indices, dict_parameters)
+        try:
+            view_list = list(itertools.combinations(views, L))
+            view_names_list = list(itertools.combinations(view_names, L))
+            encoders_list = list(itertools.combinations(encoders, L))
+            for i , j, z in zip(view_list, view_names_list, encoders_list):
+                view_name = '_'.join(j)
+                print (view_name)
+                dataset = data.CCA_Dataset(i)
+                dataset_size = len(dataset)
+                
+                
+                ## Creating training and validation dataset
+                indices = list(range(dataset_size))
+                split = int(np.floor(0.9 * dataset_size))
+                np.random.seed(0)
+                np.random.shuffle(indices)
+                train_indices, val_indices = indices[:split], indices[split:]
+                shuffled_indices = train_indices + val_indices
+                train_sampler = SubsetRandomSampler(train_indices)
+                val_sampler = SubsetRandomSampler(val_indices)
+                embed_sampler = SequentialSampler(list(range(dataset_size)))
+                if (args.train_batch_size == None):
+                    train_batch_size = len(dataset)
+                else:
+                    train_batch_size = args.train_batch_size
+                if (args.val_batch_size == None):
+                    val_batch_size = len(dataset)
+                else:
+                    val_batch_size = args.val_batch_size
+                train_loader = DataLoader(dataset, sampler=train_sampler, num_workers= int((args.num_workers)), batch_size = train_batch_size)
+                val_loader = DataLoader(dataset, sampler=val_sampler, num_workers= int((args.num_workers)), batch_size = val_batch_size)
+                embed_loader = DataLoader(dataset, sampler=embed_sampler, num_workers= int((args.num_workers)), batch_size = dataset_size)
+                #BatchSampler(SequentialSampler(range(10)), batch_size=3, drop_last=False)
+    
+    
+    
+                # Deep Generalized Canonical Correlation Analysis
+                embed_path = os.path.join(args.embedPath , view_name)
+                model_path = os.path.join(args.model_path, view_name)
+                log_path = os.path.join(args.log_path, view_name)
+                final_embd_csv_path = os.path.join(args.final_embed_path, view_name)
+                paths = [embed_path, model_path, log_path, final_embd_csv_path]
+                for path in paths:
+                    if not os.path.exists(path):
+                        os.makedirs(path)
+                dcca = DCCA(embedding_path= embed_path, latent_dims=latent_dims, encoders=list(z), objective=objectives.GCCA, epochs= num_of_epochs)
+                optimizer = optim.Adam(dcca.parameters(), lr=lr)
+                scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, 1)
+                dcca = CCALightning(dcca, optimizer=optimizer, lr_scheduler=scheduler, embedding_path = embed_path)
+                trainer = pl.Trainer(default_root_dir=log_path, max_epochs=num_of_epochs, enable_checkpointing=True, 
+                                     accelerator="gpu", devices=1, profiler="simple", 
+                                     callbacks= [ModelCheckpoint(monitor='val loss', mode='min', dirpath=model_path, 
+                                                                 filename='{epoch}-{step}-{val loss:.2f}')])
+                #, accelerator="gpu", devices=4, strategy="ddp"#### gpus=2
+                trainer.fit(dcca, train_loader, val_loader)
+                trainer.validate(dataloaders=embed_loader, ckpt_path='best')
+                embeding_csv = pd.DataFrame(np.load(os.path.join(embed_path,'embedding_view.npy')))
+                embeding_csv = embeding_csv.rename(columns={k:'DGCCA_'+str(k+1) for k in embeding_csv.columns})
+                embeding_csv.to_csv(os.path.join(final_embd_csv_path, "final_embedding.csv"), index=False)
+                #dict_parameters['csv_path']=os.path.join(final_embd_csv_path, "final_embedding.csv")
+                np.save(os.path.join(final_embd_csv_path, 'parameters_details.npy'), dict_parameters)
+                #save_embedding(args.embedPath, args.base_name, args.final_embed_path, shuffled_indices, dict_parameters)
+        except:
+            continue
 
 
 
