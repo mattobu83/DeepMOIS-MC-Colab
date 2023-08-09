@@ -122,7 +122,7 @@ if __name__ == '__main__':
         for i , j, z in zip(view_list, view_names_list, encoders_list):
             view_name = '_'.join(j)
             print (view_name)
-            if view_name == "methyl_rnaseq_imaging":
+            if view_name == "methyl_rnaseq_imaging" or view_name == "methyl_rnaseq":
               dataset = data.CCA_Dataset(i)
               dataset_size = len(dataset)
               
