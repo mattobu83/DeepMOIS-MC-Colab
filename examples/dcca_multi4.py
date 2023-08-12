@@ -116,11 +116,11 @@ if __name__ == '__main__':
     
     for L in range(2, len(views)+1):
         print(L)
-        try:
-            view_list = list(itertools.combinations(views, L))
-            view_names_list = list(itertools.combinations(view_names, L))
-            encoders_list = list(itertools.combinations(encoders, L))
-            for i , j, z in zip(view_list, view_names_list, encoders_list):
+        view_list = list(itertools.combinations(views, L))
+        view_names_list = list(itertools.combinations(view_names, L))
+        encoders_list = list(itertools.combinations(encoders, L))
+        for i , j, z in zip(view_list, view_names_list, encoders_list):
+            try:
                 view_name = '_'.join(j)
                 print (view_name)
                 dataset = data.CCA_Dataset(i)
@@ -178,13 +178,13 @@ if __name__ == '__main__':
                 #dict_parameters['csv_path']=os.path.join(final_embd_csv_path, "final_embedding.csv")
                 np.save(os.path.join(final_embd_csv_path, 'parameters_details.npy'), dict_parameters)
                 #save_embedding(args.embedPath, args.base_name, args.final_embed_path, shuffled_indices, dict_parameters)
-        except:
-            print("-x-"*25)
-            print(" ")
-            print("did not converge")
-            print(" ")
-            print("-x-"*25)
-            continue
+            except:
+                print("-x-"*25)
+                print(" ")
+                print("did not converge")
+                print(" ")
+                print("-x-"*25)
+                continue
 
 
 
