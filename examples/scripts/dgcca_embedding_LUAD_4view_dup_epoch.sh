@@ -15,7 +15,7 @@ do
   
   
   ## Training parameters
-  architecture="[[1000,500],[900,400],[200,150],[200,150]]" # Set architecture of each view
+  architecture="[[1000,500],[900,400],[200,150],[15,10]]" # Set architecture of each view
   #numEpochs=5
   latent_dims=100
   lr=0.0000001
@@ -37,7 +37,7 @@ do
   
   
   ## Run the code
-  echo "python /content/DeepMOIS-MC/examples/dcca_multi.py --input ${IN_PATH} --n ${NO_OF_VIEWS} --arch \"${architecture}\" --epochs ${epoch} --latDim ${latent_dims} --lr ${lr} --log_path ${LOG_PATH} --model_path ${MODEL_PATH} --embedPath ${EMBEDDINGS_PATH} --num_workers ${num_workers} --train_batch_size ${train_batch_size} --val_batch_size ${val_batch_size} --base_name ${BASE} --cancer_type ${CANCER_TYPE} --final_embed_path ${FINAL_EMBEDDING_PATH}"
+  echo "python /content/DeepMOIS-MC/examples/dcca_multi4.py --input ${IN_PATH} --n ${NO_OF_VIEWS} --arch \"${architecture}\" --epochs ${epoch} --latDim ${latent_dims} --lr ${lr} --log_path ${LOG_PATH} --model_path ${MODEL_PATH} --embedPath ${EMBEDDINGS_PATH} --num_workers ${num_workers} --train_batch_size ${train_batch_size} --val_batch_size ${val_batch_size} --base_name ${BASE} --cancer_type ${CANCER_TYPE} --final_embed_path ${FINAL_EMBEDDING_PATH}"
   
   # --train_batch_size ${train_batch_size} --val_batch_size ${val_batch_size}
   python /content/DeepMOIS-MC/examples/dcca_multi4.py --input ${IN_PATH} --n ${NO_OF_VIEWS} --arch "${architecture}" --epochs ${epoch} --latDim ${latent_dims} --lr ${lr} --log_path ${LOG_PATH} --model_path ${MODEL_PATH} --embedPath ${EMBEDDINGS_PATH} --num_workers ${num_workers} --base_name ${BASE} --cancer_type ${CANCER_TYPE} --final_embed_path ${FINAL_EMBEDDING_PATH} | tee $LOG_PATH"/"$(date "+%Y-%m-%d_%H:%M:%S")"_log.txt"
