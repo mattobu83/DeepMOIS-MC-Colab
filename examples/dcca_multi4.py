@@ -179,7 +179,7 @@ if __name__ == '__main__':
                 np.save(os.path.join(final_embd_csv_path, 'parameters_details.npy'), dict_parameters)
                 #save_embedding(args.embedPath, args.base_name, args.final_embed_path, shuffled_indices, dict_parameters)
             except Exception as e:
-                print(e):
+                print(e)
                 print("-x-"*25)
                 print(" ")
                 print("did not converge")
