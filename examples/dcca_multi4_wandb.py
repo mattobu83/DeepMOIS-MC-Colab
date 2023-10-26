@@ -126,7 +126,8 @@ if __name__ == '__main__':
                 dataset = data.CCA_Dataset(i)
                 dataset_size = len(dataset)
                 
-                
+                wandb_logger = WandbLogger()
+trainer = Trainer(logger=wandb_logger)
                 ## Creating training and validation dataset
                 indices = list(range(dataset_size))
                 split = int(np.floor(0.9 * dataset_size))
