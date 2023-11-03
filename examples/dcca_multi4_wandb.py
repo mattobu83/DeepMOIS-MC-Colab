@@ -20,6 +20,9 @@ from torch.utils.data import DataLoader, Subset
 from torch.utils.data.sampler import SubsetRandomSampler, SequentialSampler, BatchSampler
 
 
+import wandb
+wandb.login(key = 'e588c41b88afe45e039ca08d8e1c9868a6535ec9')
+
 from cca import data
 from cca.deepmodels import (
     DCCA,
@@ -127,7 +130,7 @@ if __name__ == '__main__':
                 dataset = data.CCA_Dataset(i)
                 dataset_size = len(dataset)
                 
-                wandb_logger = WandbLogger()
+                wandb_logger = WandbLogger(project='DeepMOIS',name = view_name)
 
                 ## Creating training and validation dataset
                 indices = list(range(dataset_size))
@@ -180,6 +183,7 @@ if __name__ == '__main__':
                 #dict_parameters['csv_path']=os.path.join(final_embd_csv_path, "final_embedding.csv")
                 np.save(os.path.join(final_embd_csv_path, 'parameters_details.npy'), dict_parameters)
                 #save_embedding(args.embedPath, args.base_name, args.final_embed_path, shuffled_indices, dict_parameters)
+                wandb.finish()
             except Exception as e:
                 print(e)
                 print("-x-"*25)
