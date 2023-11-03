@@ -15,6 +15,7 @@ import pandas as pd
 import pytorch_lightning as pl
 from torch import optim
 from pytorch_lightning.callbacks import ModelCheckpoint
+from pytorch_lightning.loggers import WandbLogger
 from torch.utils.data import DataLoader, Subset
 from torch.utils.data.sampler import SubsetRandomSampler, SequentialSampler, BatchSampler
 
@@ -127,7 +128,7 @@ if __name__ == '__main__':
                 dataset_size = len(dataset)
                 
                 wandb_logger = WandbLogger()
-trainer = Trainer(logger=wandb_logger)
+
                 ## Creating training and validation dataset
                 indices = list(range(dataset_size))
                 split = int(np.floor(0.9 * dataset_size))
@@ -167,7 +168,7 @@ trainer = Trainer(logger=wandb_logger)
                 scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, 1)
                 dcca = CCALightning(dcca, optimizer=optimizer, lr_scheduler=scheduler, embedding_path = embed_path)
                 trainer = pl.Trainer(default_root_dir=log_path, max_epochs=num_of_epochs, enable_checkpointing=True, 
-                                     accelerator="gpu", devices=1, profiler="simple", 
+                                     accelerator="gpu", devices=1, profiler="simple", logger=wandb_logger,
                                      callbacks= [ModelCheckpoint(monitor='val loss', mode='min', dirpath=model_path, 
                                                                  filename='{epoch}-{step}-{val loss:.2f}')])
                 #, accelerator="gpu", devices=4, strategy="ddp"#### gpus=2
