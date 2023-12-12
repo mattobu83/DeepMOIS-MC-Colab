@@ -129,8 +129,8 @@ if __name__ == '__main__':
                 print (view_name)
                 dataset = data.CCA_Dataset(i)
                 dataset_size = len(dataset)
-                
-                wandb_logger = WandbLogger(project='DeepMOIS',name = view_name)
+                wandb.init(project='DeepMOIS', entity='mattobu', name = view_name)
+                #wandb_logger = WandbLogger(project='DeepMOIS',name = view_name)
 
                 ## Creating training and validation dataset
                 indices = list(range(dataset_size))
@@ -171,9 +171,9 @@ if __name__ == '__main__':
                 scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, 1)
                 dcca = CCALightning(dcca, optimizer=optimizer, lr_scheduler=scheduler, embedding_path = embed_path)
                 trainer = pl.Trainer(default_root_dir=log_path, max_epochs=num_of_epochs, enable_checkpointing=True, 
-                                     accelerator="gpu", devices=1, profiler="simple", logger=wandb_logger,
-                                     callbacks= [ModelCheckpoint(monitor='val loss', mode='min', dirpath=model_path, 
-                                                                 filename='{epoch}-{step}-{val loss:.2f}')])
+                                     accelerator="gpu", devices=1, profiler="simple", logger=wandb.loggers.WandbLogger())
+                                     #callbacks= [ModelCheckpoint(monitor='val loss', mode='min', dirpath=model_path, 
+                                                                 #filename='{epoch}-{step}-{val loss:.2f}')])
                 #, accelerator="gpu", devices=4, strategy="ddp"#### gpus=2
                 trainer.fit(dcca, train_loader, val_loader)
                 trainer.validate(dataloaders=embed_loader, ckpt_path='best')
