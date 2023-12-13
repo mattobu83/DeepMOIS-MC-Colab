@@ -40,12 +40,12 @@ def save_embedding(all_embedding_files_path, base_name, final_embd_csv_path, ind
     sorted_file_list = sorted(all_filenames, key=alphanum_key)
     temp = []
     for file in sorted_file_list[-2:]:
-        print(file)
+        #print(file)
         if (file.endswith(".npy")):
             file_path = join(all_embedding_files_path, file)
             X= np.load(file_path)
-            print (X)
-            print (len(X))
+            #print (X)
+            #print (len(X))
             temp.append(X)
             
     emb = np.vstack(temp)
@@ -103,7 +103,7 @@ if __name__ == '__main__':
         feature_lists[0].append(df.iloc[i, 4].split()), feature_lists[1].append(df.iloc[i, 5].split()), feature_lists[2].append(df.iloc[i, 6].split()),feature_lists[3].append(df.iloc[i, 7].split())
     for k in range(no_of_views):
         globals()['view_%s_features' % k] = np.array([[float(i) for i in row] for row in feature_lists[k]])
-    print(view_0_features.shape, view_1_features.shape, view_2_features.shape, view_3_features.shape)
+    #print(view_0_features.shape, view_1_features.shape, view_2_features.shape, view_3_features.shape)
     
     # Developing the architecture
     Encoders = []
