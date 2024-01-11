@@ -9,11 +9,12 @@ Deep CCA for more than 2 views
 
 This example demonstrates how to easily train Deep CCA models and variants
 """
+
 import argparse, json
 import numpy as np
 import pandas as pd
 import pytorch_lightning as pl
-from torch import optim
+from torch import optim, manual_seed
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger
 from torch.utils.data import DataLoader, Subset
@@ -141,7 +142,7 @@ if __name__ == '__main__':
                 shuffled_indices = train_indices + val_indices
 
                 #try to initialize in the same seed every time for reproducibility
-                torch.manual_seed(0)
+                manual_seed(0)
                 
                 
                 train_sampler = SubsetRandomSampler(train_indices)
