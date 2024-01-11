@@ -139,6 +139,11 @@ if __name__ == '__main__':
                 np.random.shuffle(indices)
                 train_indices, val_indices = indices[:split], indices[split:]
                 shuffled_indices = train_indices + val_indices
+
+                #try to initialize in the same seed every time for reproducibility
+                torch.manual_seed(0)
+                
+                
                 train_sampler = SubsetRandomSampler(train_indices)
                 val_sampler = SubsetRandomSampler(val_indices)
                 embed_sampler = SequentialSampler(list(range(dataset_size)))
