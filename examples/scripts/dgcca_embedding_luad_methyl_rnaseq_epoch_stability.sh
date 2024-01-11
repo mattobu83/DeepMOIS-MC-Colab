@@ -16,8 +16,8 @@ do
   #numEpochs=100
   latent_dims=100
   lr=0.0000001
-  train_batch_size=32
-  val_batch_size=32
+  train_batch_size=None
+  val_batch_size=None
   num_workers=2
   
   
