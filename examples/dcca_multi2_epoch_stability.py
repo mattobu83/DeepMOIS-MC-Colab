@@ -129,7 +129,7 @@ if __name__ == '__main__':
                 print (view_name)
                 dataset = data.CCA_Dataset(i)
                 dataset_size = len(dataset)
-                wandb_name = "_".join([view_name,num_of_epochs])
+                wandb_name = "_".join([view_name,str(num_of_epochs)])
                 wandb_logger = WandbLogger(project='DeepMOIS',name = wandb_name)
 
                 ## Creating training and validation dataset
