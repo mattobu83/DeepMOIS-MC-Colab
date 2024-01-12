@@ -16,8 +16,8 @@ do
   #numEpochs=100
   latent_dims=100
   lr=0.0000001
-  train_batch_size=None
-  val_batch_size=None
+  train_batch_size=64
+  val_batch_size=64
   num_workers=2
   
   
@@ -37,5 +37,5 @@ do
   echo "python /content/DeepMOIS-MC/examples/dcca_multi2_epoch_stability.py --input ${IN_PATH} --n ${NO_OF_VIEWS} --arch \"${architecture}\" --epochs ${numEpochs} --latDim ${latent_dims} --lr ${lr} --log_path ${LOG_PATH} --model_path ${MODEL_PATH} --embedPath ${EMBEDDINGS_PATH} --num_workers ${num_workers} --train_batch_size ${train_batch_size} --val_batch_size ${val_batch_size} --base_name ${BASE} --cancer_type ${CANCER_TYPE} --final_embed_path ${FINAL_EMBEDDING_PATH}"
   
   # --train_batch_size ${train_batch_size} --val_batch_size ${val_batch_size}
-  python /content/DeepMOIS-MC/examples/dcca_multi2_epoch_stability.py --input ${IN_PATH} --n ${NO_OF_VIEWS} --arch "${architecture}" --epochs ${numEpochs} --latDim ${latent_dims} --lr ${lr} --log_path ${LOG_PATH} --model_path ${MODEL_PATH} --embedPath ${EMBEDDINGS_PATH} --num_workers ${num_workers} --base_name ${BASE} --cancer_type ${CANCER_TYPE} --final_embed_path ${FINAL_EMBEDDING_PATH} | tee $LOG_PATH"/"$(date "+%Y-%m-%d_%H:%M:%S")"_log.txt"
+  python /content/DeepMOIS-MC/examples/dcca_multi2_epoch_stability.py --input ${IN_PATH} --n ${NO_OF_VIEWS} --arch "${architecture}" --epochs ${numEpochs} --latDim ${latent_dims} --lr ${lr} --log_path ${LOG_PATH} --model_path ${MODEL_PATH} --embedPath ${EMBEDDINGS_PATH} --num_workers ${num_workers} --base_name ${BASE} --cancer_type ${CANCER_TYPE} --final_embed_path ${FINAL_EMBEDDING_PATH} --train_batch_size ${train_batch_size} --val_batch_size ${val_batch_size} | tee $LOG_PATH"/"$(date "+%Y-%m-%d_%H:%M:%S")"_log.txt"
 done  
