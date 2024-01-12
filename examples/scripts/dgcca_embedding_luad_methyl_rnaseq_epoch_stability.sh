@@ -1,8 +1,8 @@
-for numEpochs in {10..100..10}
+for numEpochs in {10..30..10}
 do
   CANCER_TYPE="LUAD"
   ##Directory Path
-  IN_DIR="/content/drive/MyDrive/TCGA_LUAD_DGCCA"
+  IN_DIR="/content/"
   OUT_DIR="./results/${CANCER_TYPE}"
   
   
