@@ -101,7 +101,7 @@ if __name__ == '__main__':
     for i in range(0,df.shape[0]):
         #print (len(df.iloc[i, 4]), len(df.iloc[i, 5]), len(df.iloc[i, 6]))
         #print (len(df.iloc[i, 4].split()), len(df.iloc[i, 5].split()), len(df.iloc[i, 6].split()))
-        feature_lists[0].append(df.iloc[i, 4].split()), feature_lists[1].append(df.iloc[i, 5].split()), feature_lists[2].append(df.iloc[i, 6].split()),feature_lists[3].append(df.iloc[i, 7].split())
+        feature_lists[0].append(df.iloc[i, 4].split()), feature_lists[1].append(df.iloc[i, 5].split()), feature_lists[2].append(df.iloc[i, 6].split()))
     for k in range(no_of_views):
         globals()['view_%s_features' % k] = np.array([[float(i) for i in row] for row in feature_lists[k]])
     #print(view_0_features.shape, view_1_features.shape, view_2_features.shape, view_3_features.shape)
