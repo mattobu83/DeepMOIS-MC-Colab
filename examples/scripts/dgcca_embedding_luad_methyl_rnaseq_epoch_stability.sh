@@ -8,11 +8,11 @@ do
   
   ## Raw data
   IN_PATH="${IN_DIR}/$1"
-  NO_OF_VIEWS=4
+  NO_OF_VIEWS=3
   
   
   ## Training parameters
-  architecture="[[1000,500],[900,400],[200,150],[15,10]]" # Set architecture of each view
+  architecture="[[1000,500],[900,400],[200,150]]" # Set architecture of each view
   #numEpochs=100
   latent_dims=100
   lr=0.0000001
