@@ -115,11 +115,11 @@ if __name__ == '__main__':
     
     
     ### Creating all combination of the views
-    views = [view_0_features, view_1_features]
-    view_names = ['methyl','rnaseq']
-    encoders = [Encoder_0, Encoder_1]
+    views = [view_0_features, view_1_features, view_3_features]
+    view_names = ['methyl','rnaseq','mirna']
+    encoders = [Encoder_0, Encoder_1, Encoder_2]
   
-    for L in range(2, 3):
+    for L in range(3, 4):
         print(L)
         view_list = list(itertools.combinations(views, L))
         view_names_list = list(itertools.combinations(view_names, L))
