@@ -115,7 +115,7 @@ if __name__ == '__main__':
     
     
     ### Creating all combination of the views
-    views = [view_0_features, view_1_features, view_3_features]
+    views = [view_0_features, view_1_features, view_2_features]
     view_names = ['methyl','rnaseq','mirna']
     encoders = [Encoder_0, Encoder_1, Encoder_2]
   
