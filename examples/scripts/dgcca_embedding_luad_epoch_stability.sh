@@ -15,7 +15,7 @@ do
   architecture="[[1000,500],[900,400],[200,150]]" # Set architecture of each view
   #numEpochs=100
   latent_dims=100
-  lr=0.0000001
+  lr=0.000001
   train_batch_size=64
   val_batch_size=64
   num_workers=2
