@@ -22,7 +22,7 @@ from torch.utils.data.sampler import SubsetRandomSampler, SequentialSampler, Bat
 
 
 import wandb
-wandb.login(key = 'e588c41b88afe45e039ca08d8e1c9868a6535ec9')
+wandb.login(key = 'xxxx')
 
 from cca import data
 from cca.deepmodels import (
